@@ -3,12 +3,12 @@
 
 //! MONGODB
 // mongodb native driver
-require_once("./model/mongodb/Transaction.php");
+require_once("../../model/mongodb/Transaction.php");
 
 //! MYSQL
 // mysqli (procedural)
-require_once("./model/mysqli/Transaction.php");
+require_once("../../model/mysqli/Transaction.php");
 // mysqli (OOP)
-require_once("./model/mysqliOOP/Transaction.php");
+require_once("../../model/mysqliOOP/Transaction.php");
 // mysqli (PDO)
-require_once("./model/mysqlPDO/Transaction.php");
+require_once("../../model/mysqlPDO/Transaction.php");

@@ -30,7 +30,7 @@ todo :add mysql erd diagram
 3. Create a transaction for an account
 4. get the a transaction  
 5. get a customer information
-6. get an account information
+6. get an account information  by id
 7. update the information of a customer (email or username)
 8. delete a customer account
 9. delete a customer
@@ -44,3 +44,9 @@ mysql connection is made with
 2.mysqli (procedural)
 3.mysqli (object oriented)
  and MongoDb with the official MongoDb driver
+
+## API DOCS
+
+```link
+https://documenter.getpostman.com/view/25561810/2s93JnTRkR
+```

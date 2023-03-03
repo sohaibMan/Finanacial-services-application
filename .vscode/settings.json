@@ -1,12 +1,3 @@
 {
-  "spellchecker.ignoreWordsList": [
-    "DATABAS",
-    "username",
-    "mysql",
-    "MongoDb",
-    "MySql",
-    "Mysqli",
-    "mysqli"
-  ],
-  "cSpell.words": ["Mysqli"]
+  "cSpell.words": ["mysqli"]
 }
