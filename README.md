@@ -47,6 +47,20 @@ mysql connection is made with
 
 ## API DOCS
 
+
+### customers api
+
+```link
+https://documenter.getpostman.com/view/25561810/2s93JnTRyd
+```
+
+### accounts api
+
 ```link
 https://documenter.getpostman.com/view/25561810/2s93JnTRkR
+```
+### transactions api
+
+```link
+https://documenter.getpostman.com/view/25561810/2s93JnTkvc
 ```

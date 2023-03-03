@@ -15,13 +15,21 @@ class Account
 
     public function  createAccount($customer_id, $balance)
     {
-
         global $customers;
-        $account = $customers->updateOne(
+        $customer = $customers->findOne(['_id' => new MongoDB\BSON\ObjectId($customer_id)]);
+        if ($customer == null) {
+            http_response_code(404);
+            return  ['error' => 'customer not found'];
+        }
+        $update = ['accounts' => ['_id' => new MongoDB\BSON\ObjectId(), 'created_at' => date("Y-m-d\TH:i:sp"), 'balance' => $balance]];
+        $customerUpdated = $customers->updateOne(
             ['_id' => new MongoDB\BSON\ObjectId($customer_id)],
-            ['$push' => ['accounts' => ['_id' => new MongoDB\BSON\ObjectId(), 'created_at' => date("YY MM DD"), 'balance' => $balance]]],
+            ['$push' => $update],
         );
-        return  ['_id' => new MongoDB\BSON\ObjectId(), 'created_at' => date("Y-m-d\TH:i:sp"), 'balance' => $balance];
+        if ($customerUpdated->getModifiedCount() == 0) {
+            return null;
+        }
+        return $update;
     }
     public function addBalance($account_id, $customer_id, $balance)
     {

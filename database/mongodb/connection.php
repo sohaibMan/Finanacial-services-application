@@ -8,4 +8,4 @@ if (!$client) {
     exit;
 }
 $customers = $client->selectCollection('analytics', 'customers');
-$accounts = $client->selectCollection('analytics', 'accounts');
+$transactions = $client->selectCollection('analytics', 'transactions');

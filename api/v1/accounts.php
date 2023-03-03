@@ -34,16 +34,19 @@ header('Content-Type: application/json; charset=utf-8');
 if (isset($_GET["account_id"], $_GET["customer_id"])) {
     $account = new Account();
     echo json_encode(["status" => "success", "data" => [$account->getAccount($_GET["account_id"], $_GET["customer_id"])]]);
+    return;
 };
 
 // create account
 if (isset($_POST["customer_id"], $_POST["balance"])) {
     $account = new Account();
     echo json_encode(["status" => "success", "data" => [$account->createAccount($_POST["customer_id"], $_POST["balance"])]]);
+    return;
 }
 
 // add balance to account
 if (isset($_POST["account_id"], $_POST["customer_id"], $_POST["balance"])) {
     $account = new Account();
     echo json_encode(["status" => "success", "data" => [$account->addBalance($_POST["account_id"], $_POST["customer_id"], $_POST["balance"])]]);
+    return;
 }
