@@ -2,7 +2,7 @@
 
 namespace Mysqli {
 
-    global $customers;
+
     class Account
     {
 

@@ -2,7 +2,6 @@
 
 namespace Mysqli {
 
-    use mysqli_result;
 
     class Customer
     {

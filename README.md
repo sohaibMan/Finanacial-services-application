@@ -16,13 +16,11 @@ this is the ERD diagram for the database MongoDb.
 
 ![erd diagram](./erd(MongoDb).png)
 
-<!-- this is the ERD diagram for the database MySql.
+this is the ERD diagram for the database MySql.
 
-![erd diagram](./erd(MySql).png) 
+![erd diagram](./erd(Mysql).png) 
 
-todo :add mysql erd diagram
 
--->
 ## FEATURES
 
 1. Create a customer
