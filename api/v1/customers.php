@@ -2,11 +2,11 @@
 //? import one of them to change the connection method to the database 
 // namespace MongoDB;
 
-// namespace Mysqli;
+namespace Mysqli;
 
 // namespace MysqliOOP;
 
-namespace MysqlPDO;
+// namespace MysqlPDO;
 
 use Dotenv;
 
@@ -22,16 +22,16 @@ require_once("../../database/mysql/mysqli.php");
 require_once("../../model/mysqli/Customer.php");
 
 //! mysqli (OOP)
-require_once("../../database/mysql/mysqliOOP.php");
-require_once("../../model/mysqliOOP/Customer.php");
+// require_once("../../database/mysql/mysqliOOP.php");
+// require_once("../../model/mysqliOOP/Customer.php");
 
 //! mysqli (PDO)
-require_once("../../database/mysql/mysqlPDO.php");
-require_once("../../model/mysqlPDO/Customer.php");
+// require_once("../../database/mysql/mysqlPDO.php");
+// require_once("../../model/mysqlPDO/Customer.php");
 
 //! MONGODB Native Driver( init connection + model )
-require_once("../../database/mongodb/nativeDriver.php");
-require_once("../../model/mongodb/Customer.php");
+// require_once("../../database/mongodb/nativeDriver.php");
+// require_once("../../model/mongodb/Customer.php");
 
 
 // to send json response
