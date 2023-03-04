@@ -64,3 +64,20 @@ https://documenter.getpostman.com/view/25561810/2s93JnTRkR
 ```link
 https://documenter.getpostman.com/view/25561810/2s93JnTkvc
 ```
+
+## INSTALLATION
+
+1. clone the repo
+
+```bash
+git clone https://github.com/sohaibMan/Finanacial-services-application-PHP-Rest-Api-MongoDb-MySQL.git
+```
+
+2. install the dependencies
+
+```bash
+php composer.phar update 
+php composer.phar install
+```
+3.fill the .env file with your database credentials
+4.enjoy
