@@ -1,9 +1,9 @@
 <?php
 
 //? import one of them to change the connection method to the database 
-namespace MongoDB;
+// namespace MongoDB;
 
-// namespace Mysqli;
+namespace Mysqli;
 
 // namespace MysqliOOP;
 
@@ -40,16 +40,16 @@ header('Content-Type: application/json; charset=utf-8');
 
 if (isset($_GET["transaction_id"])) {
     $transaction = new Transaction();
-    echo json_encode(["status" => "success", "data" => [$transaction->getTransaction($_GET["transaction_id"])]]);
+    echo json_encode($transaction->getTransaction($_GET["transaction_id"]));
 };
 
 if (isset($_GET["account_id"])) {
     $transaction = new Transaction();
-    echo json_encode(["status" => "success", "data" => [$transaction->getAccountsTransaction($_GET["account_id"])]]);
+    echo json_encode($transaction->getAccountsTransaction($_GET["account_id"]));
 };
 
 
 if (isset($_POST["account_id"], $_POST["amount"], $_POST["label"])) {
     $transaction = new Transaction();
-    echo json_encode(["status" => "success", "data" => [$transaction->createTransaction($_POST["account_id"], $_POST["amount"], $_POST["label"])]]);
+    echo json_encode($transaction->createTransaction($_POST["account_id"], $_POST["amount"], $_POST["label"]));
 }

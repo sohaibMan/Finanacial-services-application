@@ -1,8 +1,8 @@
 <?php
 //? import one of them to change the connection method to the database 
-namespace MongoDB;
+// namespace MongoDB;
 
-// namespace Mysqli;
+namespace Mysqli;
 
 // namespace MysqliOOP;
 
@@ -41,11 +41,11 @@ header('Content-Type: application/json; charset=utf-8');
 
 if (isset($_GET["customer_id"])) {
     $account = new Customer();
-    echo json_encode(["status" => "success", "data" => [$account->getCustomer($_GET["customer_id"])]]);
+    echo json_encode(["status" => http_response_code() == 200 ? "success" : "failed", "data" => [$account->getCustomer($_GET["customer_id"])]]);
 };
 
 
 if (isset($_POST["user_name"], $_POST["name"], $_POST["address"], $_POST["email"])) {
     $account = new Customer();
-    echo json_encode(["status" => "success", "data" => [$account->createCustomer($_POST["user_name"], $_POST["name"], $_POST["address"], $_POST["email"])]]);
+    echo json_encode(["status" => http_response_code() == 200 ? "success" : "failed", "data" => [$account->createCustomer($_POST["user_name"], $_POST["name"], $_POST["address"], $_POST["email"])]]);
 }

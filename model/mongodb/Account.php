@@ -36,12 +36,12 @@ namespace MongoDB {
             }
             return $update;
         }
-        public function addBalance($account_id, $customer_id, $balance)
+        public function addBalance($account_id, $customer_id, $amount)
         {
             global $customers;
             $account = $customers->updateOne(
                 ['customer_id' => new \MongoDB\BSON\ObjectId($customer_id,), 'accounts._id' => new \MongoDB\BSON\ObjectId($account_id)],
-                ['$inc' => ['accounts.$.balance' => $balance]]
+                ['$inc' => ['accounts.$.balance' => $amount]]
             );
             return  $account;
         }

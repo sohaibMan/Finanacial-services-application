@@ -1,9 +1,9 @@
 <?php
 
 //? import one of them to change the connection method to the database 
-namespace MongoDB;
+// namespace MongoDB;
 
-// namespace Mysqli;
+namespace Mysqli;
 
 // namespace MysqliOOP;
 
@@ -42,20 +42,20 @@ header('Content-Type: application/json; charset=utf-8');
 // get account
 if (isset($_GET["account_id"], $_GET["customer_id"])) {
     $account = new Account();
-    echo json_encode(["status" => "success", "data" => [$account->getAccount($_GET["account_id"], $_GET["customer_id"])]]);
+    echo json_encode($account->getAccount($_GET["account_id"], $_GET["customer_id"]));
     return;
 };
 
 // create account
 if (isset($_POST["customer_id"], $_POST["balance"])) {
     $account = new Account();
-    echo json_encode(["status" => "success", "data" => [$account->createAccount($_POST["customer_id"], $_POST["balance"])]]);
+    echo json_encode($account->createAccount($_POST["customer_id"], $_POST["balance"]));
     return;
 }
 
 // add balance to account
-if (isset($_POST["account_id"], $_POST["customer_id"], $_POST["balance"])) {
+if (isset($_POST["account_id"], $_POST["customer_id"], $_POST["amount"])) {
     $account = new Account();
-    echo json_encode(["status" => "success", "data" => [$account->addBalance($_POST["account_id"], $_POST["customer_id"], $_POST["balance"])]]);
+    echo json_encode($account->addBalance($_POST["account_id"], $_POST["customer_id"], $_POST["amount"]));
     return;
 }
