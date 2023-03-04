@@ -1,18 +1,23 @@
 <?php
-require_once $_SERVER["DOCUMENT_ROOT"] . '/vendor/autoload.php';
 
+namespace Mysqli {
 
-// use Dotenv\Dotenv;
+    global $customers;
+    class Account
+    {
 
-// $dotenv = Dotenv\Dotenv::createImmutable($_SERVER["DOCUMENT_ROOT"]);
+        public function __construct()
+        {
+        }
+        public function getAccount($account_id, $customer_id)
+        {
+        }
 
-// $conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password) or die("connection error");
-// // print_r($conn);
-
-
-// // Looing for .env at the root directory
-// $dotenv->safeLoad();
-// // Retrive env variable
-// $userName = $_ENV['USER_NAME'];
-
-// echo $userName; //jfBiswaji
+        public function  createAccount($customer_id, $balance)
+        {
+        }
+        public function addBalance($account_id, $customer_id, $balance)
+        {
+        }
+    }
+}

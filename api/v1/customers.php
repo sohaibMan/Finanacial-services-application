@@ -1,4 +1,14 @@
 <?php
+//? import one of them to change the connection method to the database 
+namespace MongoDB;
+
+// namespace Mysqli;
+
+// namespace MysqliOOP;
+
+// namespace MysqlPDO;
+
+use Dotenv;
 
 // load the packages from composer
 require_once $_SERVER["DOCUMENT_ROOT"] . '/vendor/autoload.php';
@@ -6,25 +16,22 @@ require_once $_SERVER["DOCUMENT_ROOT"] . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable($_SERVER["DOCUMENT_ROOT"]);
 $dotenv->safeLoad();
 
-// ?init connection to the database
-//! MONGODB
-require_once("../../database/mongodb/connection.php");
-//! MYSQL
-require_once("../../database/mysql/connection.php");
 
-// import one of them to change the connection method to the database 
-// ? deal with databases data
-//! MONGODB
-// mongodb native driver
-require_once("../../model/mongodb/Customer.php");
-
-//! MYSQL
-// mysqli (procedural)
+//! MYSQL (procedural)
+require_once("../../database/mysql/mysqli.php");
 require_once("../../model/mysqli/Customer.php");
-// mysqli (OOP)
+
+//! mysqli (OOP)
+require_once("../../database/mysql/mysqliOOP.php");
 require_once("../../model/mysqliOOP/Customer.php");
-// mysqli (PDO)
+
+//! mysqli (PDO)
+require_once("../../database/mysql/mysqlPDO.php");
 require_once("../../model/mysqlPDO/Customer.php");
+
+//! MONGODB Native Driver( init connection + model )
+require_once("../../database/mongodb/nativeDriver.php");
+require_once("../../model/mongodb/Customer.php");
 
 
 // to send json response
