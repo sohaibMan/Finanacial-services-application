@@ -21,16 +21,16 @@ $dotenv->safeLoad();
 
 
 //! MYSQL (procedural)
-require_once("../../database/mysql/mysqli.php");
-require_once("../../model/mysqli/Account.php");
+// require_once("../../database/mysql/mysqli.php");
+// require_once("../../model/mysqli/Account.php");
 
 //! mysqli (OOP)
-require_once("../../database/mysql/mysqliOOP.php");
-require_once("../../model/mysqliOOP/Account.php");
+// require_once("../../database/mysql/mysqliOOP.php");
+// require_once("../../model/mysqliOOP/Account.php");
 
 //! mysqli (PDO)
-require_once("../../database/mysql/mysqlPDO.php");
-require_once("../../model/mysqlPDO/Account.php");
+// require_once("../../database/mysql/mysqlPDO.php");
+// require_once("../../model/mysqlPDO/Account.php");
 
 //! MONGODB Native Driver( init connection + model )
 require_once("../../database/mongodb/nativeDriver.php");
