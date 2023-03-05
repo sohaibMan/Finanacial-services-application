@@ -23,8 +23,8 @@ $dotenv->safeLoad();
 // require_once("../../model/mysqli/Transaction.php");
 
 //! mysqli (OOP)
-require_once("../../database/mysql/mysqliOOP.php");
-require_once("../../model/mysqliOOP/Transaction.php");
+// require_once("../../database/mysql/mysqliOOP.php");
+// require_once("../../model/mysqliOOP/Transaction.php");
 
 //! mysqli (PDO)
 // require_once("../../database/mysql/mysqlPDO.php");
