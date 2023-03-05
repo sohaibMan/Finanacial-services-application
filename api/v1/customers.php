@@ -4,9 +4,9 @@
 
 // namespace Mysqli;
 
-// namespace MysqliOOP;
+namespace MysqliOOP;
 
-namespace MysqlPDO;
+// namespace MysqlPDO;
 
 use Dotenv;
 
@@ -26,8 +26,8 @@ $dotenv->safeLoad();
 // require_once("../../model/mysqliOOP/Customer.php");
 
 //! mysqli (PDO)
-require_once("../../database/mysql/mysqlPDO.php");
-require_once("../../model/mysqlPDO/Customer.php");
+// require_once("../../database/mysql/mysqlPDO.php");
+// require_once("../../model/mysqlPDO/Customer.php");
 
 //! MONGODB Native Driver( init connection + model )
 // require_once("../../database/mongodb/nativeDriver.php");
