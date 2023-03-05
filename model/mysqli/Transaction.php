@@ -1,7 +1,6 @@
 <?php
 
 namespace mysqli {
-    global $transactions;
     class Transaction
     {
 
