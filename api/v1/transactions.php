@@ -3,9 +3,9 @@
 //? import one of them to change the connection method to the database 
 // namespace MongoDB;
 
-namespace Mysqli;
+// namespace Mysqli;
 
-// namespace MysqliOOP;
+namespace MysqliOOP;
 
 // namespace MysqlPDO;
 
@@ -23,8 +23,8 @@ $dotenv->safeLoad();
 // require_once("../../model/mysqli/Transaction.php");
 
 //! mysqli (OOP)
-// require_once("../../database/mysql/mysqliOOP.php");
-// require_once("../../model/mysqliOOP/Transaction.php");
+require_once("../../database/mysql/mysqliOOP.php");
+require_once("../../model/mysqliOOP/Transaction.php");
 
 //! mysqli (PDO)
 // require_once("../../database/mysql/mysqlPDO.php");
