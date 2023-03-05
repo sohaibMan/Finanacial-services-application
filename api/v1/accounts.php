@@ -3,9 +3,9 @@
 //? import one of them to change the connection method to the database 
 // namespace MongoDB;
 
-// namespace Mysqli;
+namespace Mysqli;
 
-namespace MysqliOOP;
+// namespace MysqliOOP;
 
 // namespace MysqlPDO;
 
@@ -33,8 +33,8 @@ $dotenv->safeLoad();
 // require_once("../../model/mysqlPDO/Account.php");
 
 //! MONGODB Native Driver( init connection + model )
-require_once("../../database/mongodb/nativeDriver.php");
-require_once("../../model/mongodb/Account.php");
+// require_once("../../database/mongodb/nativeDriver.php");
+// require_once("../../model/mongodb/Account.php");
 
 // to send json response
 header('Content-Type: application/json; charset=utf-8');
