@@ -25,8 +25,8 @@ $dotenv->safeLoad();
 // require_once("../../model/mysqli/Account.php");
 
 //! mysqli (OOP)
-// require_once("../../database/mysql/mysqliOOP.php");
-// require_once("../../model/mysqliOOP/Account.php");
+require_once("../../database/mysql/mysqliOOP.php");
+require_once("../../model/mysqliOOP/Account.php");
 
 //! mysqli (PDO)
 // require_once("../../database/mysql/mysqlPDO.php");
@@ -61,3 +61,14 @@ if (isset($_POST["account_id"], $_POST["customer_id"], $_POST["amount"])) {
     echo json_encode($account->addBalance($_POST["account_id"], $_POST["customer_id"], $_POST["amount"]));
     return;
 }
+if (isset($_POST["_method"], $_POST["account_id"], $_POST["customer_id"]) && strcmp($_POST["_method"], 'delete') == 0) {
+    $account_id = $_POST["account_id"];
+    $customer_id = $_POST["customer_id"];
+    $account = new Account();
+    echo json_encode($account->deleteAccount($account_id, $customer_id));
+    return;
+};
+
+http_response_code(404);
+echo json_encode(['status' => 'failed', 'data' => ['message' => 'unfounded resource ']]);
+return;

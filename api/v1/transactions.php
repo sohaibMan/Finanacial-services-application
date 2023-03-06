@@ -41,15 +41,22 @@ header('Content-Type: application/json; charset=utf-8');
 if (isset($_GET["transaction_id"])) {
     $transaction = new Transaction();
     echo json_encode($transaction->getTransaction($_GET["transaction_id"]));
+    return;
 };
 
 if (isset($_GET["account_id"])) {
     $transaction = new Transaction();
     echo json_encode($transaction->getAccountsTransaction($_GET["account_id"]));
+    return;
 };
 
 
 if (isset($_POST["account_id"], $_POST["amount"], $_POST["label"])) {
     $transaction = new Transaction();
     echo json_encode($transaction->createTransaction($_POST["account_id"], $_POST["amount"], $_POST["label"]));
+    return;
 }
+
+http_response_code(404);
+echo json_encode(['status' => 'failed', 'data' => ['message' => 'unfounded resource ']]);
+return;

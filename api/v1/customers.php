@@ -22,8 +22,8 @@ $dotenv->safeLoad();
 // require_once("../../model/mysqli/Customer.php");
 
 //! mysqli (OOP)
-// require_once("../../database/mysql/mysqliOOP.php");
-// require_once("../../model/mysqliOOP/Customer.php");
+require_once("../../database/mysql/mysqliOOP.php");
+require_once("../../model/mysqliOOP/Customer.php");
 
 //! mysqli (PDO)
 // require_once("../../database/mysql/mysqlPDO.php");
@@ -41,11 +41,22 @@ header('Content-Type: application/json; charset=utf-8');
 
 if (isset($_GET["customer_id"])) {
     $account = new Customer();
-    echo json_encode(["status" => http_response_code() == 200 ? "success" : "failed", "data" => [$account->getCustomer($_GET["customer_id"])]]);
+    echo json_encode($account->getCustomer($_GET["customer_id"]));
+    return;
 };
 
 
 if (isset($_POST["user_name"], $_POST["name"], $_POST["address"], $_POST["email"])) {
     $account = new Customer();
-    echo json_encode(["status" => http_response_code() == 200 ? "success" : "failed", "data" => [$account->createCustomer($_POST["user_name"], $_POST["name"], $_POST["address"], $_POST["email"])]]);
+    echo json_encode($account->createCustomer($_POST["user_name"], $_POST["name"], $_POST["address"], $_POST["email"]));
+    return;
 }
+
+if (isset($_POST["_method"], $_POST["customer_id"]) && $_POST["_method"] == 'delete') {
+    $account = new Customer();
+    echo json_encode($account->deleteCustomer($_POST["customer_id"]));
+    return;
+}
+http_response_code(404);
+echo json_encode(['status' => 'failed', 'data' => ['message' => 'unfounded resource ']]);
+return;
