@@ -42,5 +42,14 @@ namespace Mysqli {
             mysqli_query($conn, "UPDATE accounts SET balance=balance+$amount");
             return  ["status" => "success", "data" =>  ["message" => "balance incremented by $amount"]];
         }
+        public function deleteAccount($account_id, $customer_id)
+        {
+            global $conn;
+            $account_id = mysqli_real_escape_string($conn, $account_id);
+            $customer_id = mysqli_real_escape_string($conn, $customer_id);
+            mysqli_query($conn, "DELETE FROM transactions WHERE account_id='$account_id'");
+            mysqli_query($conn, "DELETE FROM accounts WHERE _id='$account_id' AND customer_id='$customer_id'");
+            return ['status' => 'success', 'data' => ['message' => "$account_id was deleted successfully"]];
+        }
     }
 }

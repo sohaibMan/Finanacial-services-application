@@ -14,7 +14,7 @@ namespace Mysqli {
             global $conn;
             $account_id = mysqli_real_escape_string($conn, $account_id);
             $result = mysqli_query($conn, "SELECT * FROM customers WHERE _id='$account_id'");
-            return mysqli_fetch_assoc($result);
+            return ['status' => 'success', 'data' => mysqli_fetch_assoc($result)];
         }
         public function  createCustomer($user_name, $name, $address, $email)
         {
@@ -31,6 +31,16 @@ namespace Mysqli {
                 if (mysqli_error($conn)) return ['error' => 'There is no customer with this id'];
             }
             return ['_id' => $_id, 'user_name' => $user_name, 'name' => $name, 'address' => $address, 'email' => $email];
+        }
+        public function deleteCustomer($customer_id)
+        {
+            global $conn;
+            $customer_id = mysqli_real_escape_string($conn, $customer_id);
+            $result = mysqli_query($conn, "SELECT COUNT(*) AS number_of_account FROM accounts WHERE customer_id='$customer_id'");
+            $number_of_account = mysqli_fetch_array($result)['number_of_account'];
+            if ($number_of_account != 0) return  ['status' => 'failed', 'data' => ['message' => "$customer_id already has active accounts , you should delete them first"]];
+            mysqli_query($conn, "DELETE FROM customers WHERE _id='$customer_id'");
+            return ['status' => 'success', 'data' => ['message' => "$customer_id was deleted successfully "]];
         }
     }
 }

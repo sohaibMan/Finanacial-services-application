@@ -36,7 +36,7 @@ namespace MysqliOOP {
             $customer_id = $conn->real_escape_string($customer_id);
             $number_of_account = $conn->query("SELECT COUNT(*) AS number_of_account FROM accounts WHERE customer_id='$customer_id'")->fetch_array()['number_of_account'];
             if ($number_of_account != 0) return  ['status' => 'failed', 'data' => ['message' => "$customer_id already has active accounts , you should delete them first"]];
-            $result = $conn->query("DELETE FROM customers WHERE _id='$customer_id'");
+            $conn->query("DELETE FROM customers WHERE _id='$customer_id'");
             return ['status' => 'success', 'data' => ['message' => "$customer_id was deleted successfully "]];
         }
     }
