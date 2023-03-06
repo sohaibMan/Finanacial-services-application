@@ -25,5 +25,13 @@ namespace MysqlPDO {
             }
             return ['_id' => $_id, 'user_name' => $user_name, 'name' => $name, 'address' => $address, 'email' => $email];
         }
+        public function deleteCustomer($customer_id)
+        {
+            global $pdo;
+            $number_of_account = $pdo->query("SELECT COUNT(*) AS number_of_account FROM accounts WHERE customer_id='$customer_id'")->fetch(\PDO::FETCH_ASSOC)['number_of_account'];
+            if ($number_of_account != 0) return  ['status' => 'failed', 'data' => ['message' => "$customer_id already has active accounts , you should delete them first"]];
+            $pdo->query("DELETE FROM customers WHERE _id='$customer_id'");
+            return ['status' => 'success', 'data' => ['message' => "$customer_id was deleted successfully "]];
+        }
     }
 }

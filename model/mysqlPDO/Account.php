@@ -30,9 +30,16 @@ namespace MysqlPDO {
         }
         public function addBalance($account_id, $customer_id, $amount)
         {
-            global $conn;
-            $conn->query("UPDATE accounts SET balance=balance+$amount");
+            global $pdo;
+            $pdo->query("UPDATE accounts SET balance=balance+$amount");
             return  ["status" => "success", "data" =>  ["message" => "balance incremented by $amount"]];
+        }
+        public function deleteAccount($account_id, $customer_id)
+        {
+            global $pdo;
+            $pdo->query("DELETE FROM transactions WHERE account_id='$account_id'");
+            $pdo->query("DELETE FROM accounts WHERE _id='$account_id' AND customer_id='$customer_id'");
+            return ['status' => 'success', 'data' => ['message' => "$account_id was deleted successfully"]];
         }
     }
 }
