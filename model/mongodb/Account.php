@@ -3,6 +3,7 @@
 
 namespace MongoDB {
 
+    use MongoDB\Operation\UpdateOne;
 
     global $customers;
     class Account
@@ -59,6 +60,12 @@ namespace MongoDB {
             } catch (\Exception $e) {
                 return ['status' => 'failed', 'error' => $e->getMessage()];
             }
+        }
+        public function deleteAccount($account_id, $customer_id)
+        {
+            global $customers;
+            $customers->UpdateOne(['_id' => new \MongoDB\BSON\ObjectId($customer_id)], ['$pull' => ['accounts' => ['_id' => new \MongoDB\BSON\ObjectId($account_id)]]]);
+            return ['status' => 'success', 'data' => ['message' => "$account_id was deleted successfully"]];
         }
     }
 };

@@ -1,13 +1,13 @@
 <?php
 
 //? import one of them to change the connection method to the database 
-// namespace MongoDB;
+namespace MongoDB;
 
 // namespace Mysqli;
 
 // namespace MysqliOOP;
 
-namespace MysqlPDO;
+// namespace MysqlPDO;
 
 use Dotenv;
 

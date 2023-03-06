@@ -1,6 +1,9 @@
 <?php
 
 namespace MongoDB {
+
+    use MongoDB\Operation\FindOne;
+
     class Customer
     {
 
@@ -28,6 +31,16 @@ namespace MongoDB {
             } catch (\Exception $e) {
                 return  ['status' => 'failed', 'data' => $e->getMessage()];
             }
+        }
+        public function deleteCustomer($customer_id)
+        {
+
+            global $customers;
+            $aggregation = [['$match' => ['_id' => new \MongoDB\BSON\ObjectId($customer_id)]], ['$project' => ['size_of_name' => ['$size' => '$accounts']]], ['$match' => ['size_of_name' => ['$gt' => 0]]]];
+            $customerHasAccount = $customers->aggregate($aggregation)->toArray() != null;
+            if ($customerHasAccount) return  ['status' => 'failed', 'data' => ['message' => "$customer_id already has active accounts ,you should delete them first"]];
+            $customers->deleteOne(['_id' => new \MongoDB\BSON\ObjectId($customer_id)]);
+            return ['status' => 'success', 'data' => ['message' => "$customer_id was deleted successfully "]];
         }
     }
 }
