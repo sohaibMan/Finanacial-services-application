@@ -46,5 +46,15 @@ namespace MysqliOOP {
             $conn->query("DELETE FROM customers WHERE _id='$customer_id'");
             return ['status' => 'success', 'data' => ['message' => "$customer_id was deleted successfully "]];
         }
+        public function updateCustomer($customer_id, $user_name, $name, $email, $address)
+        {
+            global $conn;
+            $user_name = $conn->real_escape_string($user_name);
+            $name = $conn->real_escape_string($name);
+            $address = $conn->real_escape_string($address);
+            $email = $conn->real_escape_string($email);
+            $conn->query("UPDATE customers SET username='$user_name',name='$name',address='$address',email='$email' WHERE _id='$customer_id'");
+            return ['status' => 'success', 'data' => ['message' => "$customer_id was updated successfully "]];
+        }
     }
 }

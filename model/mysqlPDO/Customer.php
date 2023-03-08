@@ -40,5 +40,11 @@ namespace MysqlPDO {
             $pdo->query("DELETE FROM customers WHERE _id='$customer_id'");
             return ['status' => 'success', 'data' => ['message' => "$customer_id was deleted successfully "]];
         }
+        public function updateCustomer($customer_id, $user_name, $name, $email, $address)
+        {
+            global $pdo;
+            $pdo->query("UPDATE customers SET username='$user_name',name='$name',address='$address',email='$email' WHERE _id='$customer_id'");
+            return ['status' => 'success', 'data' => ['message' => "$customer_id was updated successfully "]];
+        }
     }
 }

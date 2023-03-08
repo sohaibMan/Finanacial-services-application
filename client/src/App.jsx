@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import MaterialReactTable from "material-react-table";
 import {
   Box,
@@ -20,17 +20,44 @@ const App = () => {
   const [tableData, setTableData] = useState([]);
   const [validationErrors, setValidationErrors] = useState({});
 
-  const handleCreateNewRow = (values) => {
-    console.log(values);
+  useEffect(() => {
+    fetch("http://localhost/api/v1/customers.php")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setTableData(data);
+      });
+  }, []);
+
+  const handleCreateNewRow = async (values) => {
+    // console.log(values);
+
     if (
       values.name == "" ||
       values.address == "" ||
       values.email == "" ||
-      values.userName == ""
-    )
+      values.username == ""
+    ) {
       alert("cannot add an empty row");
-    tableData.push(values);
-    setTableData([...tableData]);
+      return;
+    }
+    const customerForm = new FormData();
+    customerForm.append("name", values.name);
+    customerForm.append("address", values.address);
+    customerForm.append("email", values.email);
+    customerForm.append("user_name", values.username);
+    setTableData((prv) => [...prv, values]);
+
+    var requestOptions = {
+      method: "POST",
+      body: customerForm,
+      redirect: "follow",
+    };
+
+    fetch("http://localhost/api/v1/customers.php", requestOptions)
+      .then((response) => response.text())
+      // .then((result) => console.log(result))
+      .catch((error) => alert(error));
   };
 
   const handleSaveRowEdits = async ({ exitEditingMode, row, values }) => {
@@ -38,6 +65,7 @@ const App = () => {
       tableData[row.index] = values;
       //send/receive api updates here, then refetch or update local table data for re-render
       setTableData([...tableData]);
+
       exitEditingMode(); //required to exit editing mode and close modal
     }
   };
@@ -49,13 +77,28 @@ const App = () => {
   const handleDeleteRow = useCallback(
     (row) => {
       if (
-        !confirm(`Are you sure you want to delete ${row.getValue("userName")}`)
+        !confirm(`Are you sure you want to delete ${row.getValue("username")}`)
       ) {
         return;
       }
       //send api delete request here, then refetch or update local table data for re-render
       tableData.splice(row.index, 1);
       setTableData([...tableData]);
+      const customer_id = row.original._id;
+      var formdata = new FormData();
+      formdata.append("customer_id", customer_id);
+      formdata.append("_method", "delete");
+
+      var requestOptions = {
+        method: "POST",
+        body: formdata,
+        redirect: "follow",
+      };
+
+      fetch("http://localhost/api/v1/customers.php", requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => alert("error" + error));
     },
     [tableData]
   );
@@ -92,7 +135,7 @@ const App = () => {
   const columns = useMemo(
     () => [
       {
-        accessorKey: "userName",
+        accessorKey: "username",
         header: "User Name",
         size: 140,
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({

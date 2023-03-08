@@ -48,5 +48,11 @@ namespace MongoDB {
             $customers->deleteOne(['_id' => new \MongoDB\BSON\ObjectId($customer_id)]);
             return ['status' => 'success', 'data' => ['message' => "$customer_id was deleted successfully "]];
         }
+        public function updateCustomer($customer_id, $user_name, $name, $email, $address)
+        {
+            global $customers;
+            $customers->updateOne(['_id' => new \MongoDB\BSON\ObjectId($customer_id)], ['$set' => ['username' => $user_name, 'name' => $name, 'address' => $address, 'email' => $email]]);
+            return ['status' => 'success', 'data' => ['message' => "$customer_id was updated successfully "]];
+        }
     }
 }

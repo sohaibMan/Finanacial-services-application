@@ -49,5 +49,15 @@ namespace Mysqli {
             mysqli_query($conn, "DELETE FROM customers WHERE _id='$customer_id'");
             return ['status' => 'success', 'data' => ['message' => "$customer_id was deleted successfully "]];
         }
+        public function updateCustomer($customer_id, $user_name, $name, $email, $address)
+        {
+            global $conn;
+            $user_name = mysqli_real_escape_string($conn, $user_name);
+            $name = mysqli_real_escape_string($conn, $name);
+            $address = mysqli_real_escape_string($conn, $address);
+            $email = mysqli_real_escape_string($conn, $email);
+            mysqli_query($conn, "UPDATE customers SET username='$user_name',name='$name',address='$address',email='$email' WHERE _id='$customer_id'");
+            return ['status' => 'success', 'data' => ['message' => "$customer_id was updated successfully "]];
+        }
     }
 }
