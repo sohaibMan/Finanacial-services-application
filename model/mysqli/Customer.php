@@ -16,6 +16,13 @@ namespace Mysqli {
             $result = mysqli_query($conn, "SELECT * FROM customers WHERE _id='$account_id'");
             return ['status' => 'success', 'data' => mysqli_fetch_assoc($result)];
         }
+        public function getCustomers()
+        {
+            global $conn;
+            $result = mysqli_query($conn, 'SELECT * FROM customers');
+            $customersArr = mysqli_fetch_all($result, 1);
+            return $customersArr;
+        }
         public function  createCustomer($user_name, $name, $address, $email)
         {
             global $conn;

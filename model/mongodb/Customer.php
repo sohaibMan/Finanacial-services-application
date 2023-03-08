@@ -21,6 +21,12 @@ namespace MongoDB {
                 return  ['status' => 'failed', 'data' => $e->getMessage()];
             }
         }
+        public function getCustomers()
+        {
+            global $customers;
+            $customersArr = $customers->find()->toArray();
+            return $customersArr;
+        }
         public function  createCustomer($user_name, $name, $address, $email)
         {
             try {

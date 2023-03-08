@@ -13,6 +13,13 @@ namespace MysqlPDO {
             $result = $pdo->query("SELECT * FROM customers WHERE _id='$account_id'");
             return $result->fetch(\PDO::FETCH_ASSOC);
         }
+        public function getCustomers()
+        {
+            global $pdo;
+            $result = $pdo->query('SELECT * FROM customers');
+            $customersArr = $result->fetchAll(\PDO::FETCH_ASSOC);
+            return $customersArr;
+        }
         public function  createCustomer($user_name, $name, $address, $email)
         {
             global $pdo;

@@ -32,6 +32,7 @@ this is the ERD diagram for the database MySql.
 7. update the information of a customer (email or username)
 8. delete a customer account
 9. delete a customer
+10. get all customers
 
 ## Notes
 

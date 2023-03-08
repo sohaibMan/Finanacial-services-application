@@ -1,10 +1,10 @@
 <?php
 //? import one of them to change the connection method to the database 
-namespace MongoDB;
+// namespace MongoDB;
 
 // namespace Mysqli;
 
-// namespace MysqliOOP;
+namespace MysqliOOP;
 
 // namespace MysqlPDO;
 
@@ -57,6 +57,6 @@ if (isset($_POST["_method"], $_POST["customer_id"]) && $_POST["_method"] == 'del
     echo json_encode($account->deleteCustomer($_POST["customer_id"]));
     return;
 }
-http_response_code(404);
-echo json_encode(['status' => 'failed', 'data' => ['message' => 'unfounded resource ']]);
+$customer = new Customer();
+echo json_encode($customer->getCustomers());
 return;

@@ -14,6 +14,13 @@ namespace MysqliOOP {
             $result = $conn->query("SELECT * FROM customers WHERE _id='$account_id'");
             return ['status' => 'success', 'data' => $result->fetch_assoc()];
         }
+        public function getCustomers()
+        {
+            global $conn;
+            $result = $conn->query('SELECT * FROM customers');
+            $customersArr = $result->fetch_all(1);
+            return $customersArr;
+        }
         public function  createCustomer($user_name, $name, $address, $email)
         {
             global $conn;
