@@ -45,7 +45,10 @@ namespace Mysqli {
             $customer_id = mysqli_real_escape_string($conn, $customer_id);
             $result = mysqli_query($conn, "SELECT COUNT(*) AS number_of_account FROM accounts WHERE customer_id='$customer_id'");
             $number_of_account = mysqli_fetch_array($result)['number_of_account'];
-            if ($number_of_account != 0) return  ['status' => 'failed', 'data' => ['message' => "$customer_id already has active accounts , you should delete them first"]];
+            if ($number_of_account != 0) {
+                http_response_code(400);
+                return  ['status' => 'failed', 'data' => ['message' => "$customer_id already has active accounts , you should delete them first"]];
+            }
             mysqli_query($conn, "DELETE FROM customers WHERE _id='$customer_id'");
             return ['status' => 'success', 'data' => ['message' => "$customer_id was deleted successfully "]];
         }

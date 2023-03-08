@@ -30,7 +30,7 @@ const App = () => {
   }, []);
 
   const handleCreateNewRow = async (values) => {
-    // console.log(values);
+    console.log(values);
 
     if (
       values.name == "" ||
@@ -56,16 +56,33 @@ const App = () => {
 
     fetch("http://localhost/api/v1/customers.php", requestOptions)
       .then((response) => response.text())
-      // .then((result) => console.log(result))
+      .then((result) => console.log(result))
       .catch((error) => alert(error));
   };
 
   const handleSaveRowEdits = async ({ exitEditingMode, row, values }) => {
+    var formdata = new FormData();
     if (!Object.keys(validationErrors).length) {
       tableData[row.index] = values;
       //send/receive api updates here, then refetch or update local table data for re-render
       setTableData([...tableData]);
+      formdata.append("user_name", values.username);
+      formdata.append("name", values.name);
+      formdata.append("address", values.address);
+      formdata.append("email", values.email);
+      formdata.append("_method", "patch");
+      formdata.append("customer_id", row.original._id);
 
+      var requestOptions = {
+        method: "POST",
+        body: formdata,
+        redirect: "follow",
+      };
+
+      fetch("http://localhost/api/v1/customers.php", requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => alert("error" + error));
       exitEditingMode(); //required to exit editing mode and close modal
     }
   };
@@ -89,6 +106,7 @@ const App = () => {
       formdata.append("customer_id", customer_id);
       formdata.append("_method", "delete");
 
+      console.log(row);
       var requestOptions = {
         method: "POST",
         body: formdata,
